@@ -1,0 +1,1 @@
+enum AmbulanceTypes {standard, premium, platinum}
