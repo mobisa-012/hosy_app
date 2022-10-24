@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names
+// ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +10,8 @@ import 'package:hosy/screens/home/widgets/rounded_button.dart';
 
 
 class AmbulanceBookingPaymentsWidget extends StatefulWidget {
+  const AmbulanceBookingPaymentsWidget({super.key});
+
   @override
   AmbulanceBookingPaymentsWidgetState createState() =>
       AmbulanceBookingPaymentsWidgetState();
@@ -30,73 +32,71 @@ class AmbulanceBookingPaymentsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Text(
-                      "Select Payment",
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    ListView.separated(
-                      itemBuilder: (context, index) {
-                        return buildPaymentMethod(methods[index]);
-                      },
-                      padding: EdgeInsets.symmetric(vertical: 24.0),
-                      separatorBuilder: (context, index) => Container(
-                        height: 18.0,
-                      ),
-                      physics: ClampingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: methods.length,
-                    ),
-                    Text(
-                      "Promo Code",
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    SizedBox(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Expanded(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    "Select Payment",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  ListView.separated(
+                    itemBuilder: (context, index) {
+                      return buildPaymentMethod(methods[index]);
+                    },
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    separatorBuilder: (context, index) => Container(
                       height: 18.0,
                     ),
-                    buildInputWidget(null, "Add promo code", () {})
-                  ],
-                ),
+                    physics: const ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: methods.length,
+                  ),
+                  Text(
+                    "Promo Code",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  const SizedBox(
+                    height: 18.0,
+                  ),
+                  buildInputWidget(null, "Add promo code", () {})
+                ],
               ),
             ),
           ),
-          Row(
-            children: <Widget>[
-              RoundedButton(
+        ),
+        Row(
+          children: <Widget>[
+            RoundedButton(
+              onTap: () {
+                BlocProvider.of<AmbulanceBookingBloc>(context)
+                    .add(BackPressedEvent());
+              },
+              iconData: Icons.keyboard_backspace, text: '',
+            ),
+            const SizedBox(
+              width: 18.0,
+            ),
+            Expanded(
+              flex: 2,
+              child: RoundedButton(
+                text: "Confirm Payment",
                 onTap: () {
                   BlocProvider.of<AmbulanceBookingBloc>(context)
-                      .add(BackPressedEvent());
-                },
-                iconData: Icons.keyboard_backspace, text: '',
+                      .add(PaymentMadeEvent(paymentMethod: selectedMethod));
+                }, iconData: Icons.done,
               ),
-              SizedBox(
-                width: 18.0,
-              ),
-              Expanded(
-                flex: 2,
-                child: RoundedButton(
-                  text: "Confirm Payment",
-                  onTap: () {
-                    BlocProvider.of<AmbulanceBookingBloc>(context)
-                        .add(PaymentMadeEvent(paymentMethod: selectedMethod));
-                  }, iconData: Icons.done,
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+            )
+          ],
+        ),
+      ],
     );
   }
 
@@ -108,9 +108,9 @@ class AmbulanceBookingPaymentsWidgetState
         });
       },
       child: Container(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-            color: Color(0xffeeeeee).withOpacity(0.5),
+            color: const Color(0xffeeeeee).withOpacity(0.5),
             borderRadius: BorderRadius.circular(12.0)),
         child: Row(
           children: <Widget>[
@@ -123,7 +123,7 @@ class AmbulanceBookingPaymentsWidgetState
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16.0,
             ),
             Expanded(
@@ -132,25 +132,25 @@ class AmbulanceBookingPaymentsWidgetState
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    "${method.title}",
+                    method.title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4.0,
                   ),
                   Text(
-                    "${method.description}",
+                    method.description,
                     style: Theme.of(context).textTheme.subtitle2,
                   ),
                 ],
               ),
             ),
             selectedMethod == method
-                ? Icon(
+                ? const Icon(
                     Icons.check_circle,
                     size: 28.0,
                   )
-                : Container(
+                : const SizedBox(
                     width: 0,
                     height: 0,
                   )
@@ -162,9 +162,9 @@ class AmbulanceBookingPaymentsWidgetState
 
   Widget buildInputWidget( Null, String text, Function() onTap) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
       decoration: BoxDecoration(
-        color: Color(0xffeeeeee).withOpacity(0.5),
+        color: const Color(0xffeeeeee).withOpacity(0.5),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Text(

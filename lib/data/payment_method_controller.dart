@@ -6,12 +6,12 @@ import 'package:hosy/core/services/payment_method.dart';
 class PaymentMethodController {
   static Future<List<PaymentMethod>> getMethods() async {
     return [
-      PaymentMethod(
+      const PaymentMethod(
         '2', 
         'M-pesa', 
         PathConstants.payment, 
         'Lipa na M-pesa'),
-        PaymentMethod(
+        const PaymentMethod(
           '0', 
           
           'Master card', 

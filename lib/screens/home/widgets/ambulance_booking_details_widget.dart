@@ -10,6 +10,8 @@ import 'package:hosy/screens/home/bloc/ambulance_booking_state.dart';
 import 'package:hosy/screens/home/widgets/rounded_button.dart';
 
 class AmbulanceBookingDetailsWidget extends StatefulWidget {
+  const AmbulanceBookingDetailsWidget({super.key});
+
   @override
   AmbulanceBookingDetailsWidgetState createState() =>
       AmbulanceBookingDetailsWidgetState();
@@ -36,83 +38,81 @@ class AmbulanceBookingDetailsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 6.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    "Address",
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  buildInputWidget(source.areaDetails, "hint", () {}),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  buildInputWidget(
-                      destination.areaDetails, "Enter your destination", () {}),
-                  SizedBox(
-                    height: 36.0,
-                  ),
-                  Text(
-                    "Seat and Time",
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  buildPersonSelector(),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  buildTimeSelector()
-                ],
-              ),
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "Address",
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+                const SizedBox(
+                  height: 24.0,
+                ),
+                buildInputWidget(source.areaDetails, "hint", () {}),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                buildInputWidget(
+                    destination.areaDetails, "Enter your destination", () {}),
+                const SizedBox(
+                  height: 36.0,
+                ),
+                Text(
+                  "Seat and Time",
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+                const SizedBox(
+                  height: 24.0,
+                ),
+                buildPersonSelector(),
+                const SizedBox(
+                  height: 24.0,
+                ),
+                buildTimeSelector()
+              ],
             ),
           ),
-          Row(
-            children: <Widget>[
-              RoundedButton(
+        ),
+        Row(
+          children: <Widget>[
+            RoundedButton(
+              onTap: () {
+                BlocProvider.of<AmbulanceBookingBloc>(context)
+                    .add(BackPressedEvent());
+              },
+              iconData: Icons.keyboard_backspace,
+              text: '',
+            ),
+            const SizedBox(
+              width: 18.0,
+            ),
+            Expanded(
+              flex: 2,
+              child: RoundedButton(
+                text: "See Next",
                 onTap: () {
-                  BlocProvider.of<AmbulanceBookingBloc>(context)
-                      .add(BackPressedEvent());
+                  BlocProvider.of<AmbulanceBookingBloc>(context).add(
+                      DetailsSubmittedEvent(
+                          bookingTime: bookingTime,
+                          destination: destination,
+                          source: source,
+                          noOfPersons: noOfPersons));
                 },
-                iconData: Icons.keyboard_backspace,
-                text: '',
+                iconData: Icons.arrow_forward,
               ),
-              SizedBox(
-                width: 18.0,
-              ),
-              Expanded(
-                flex: 2,
-                child: RoundedButton(
-                  text: "See Next",
-                  onTap: () {
-                    BlocProvider.of<AmbulanceBookingBloc>(context).add(
-                        DetailsSubmittedEvent(
-                            bookingTime: bookingTime,
-                            destination: destination,
-                            source: source,
-                            noOfPersons: noOfPersons));
-                  },
-                  iconData: Icons.arrow_forward,
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+            )
+          ],
+        ),
+      ],
     );
   }
 
@@ -179,7 +179,7 @@ class AmbulanceBookingDetailsWidgetState
                     context: context,
                     firstDate: DateTime.now(),
                     lastDate: DateTime(2030),
-                    initialDate: DateTime.now()..add(Duration(days: 1)),
+                    initialDate: DateTime.now()..add(const Duration(days: 1)),
                     initialDatePickerMode: DatePickerMode.day,
                   );
                   setState(() {
@@ -194,13 +194,13 @@ class AmbulanceBookingDetailsWidgetState
 
   Widget buildContainer(String val, bool enabled) {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 6.0),
-        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        margin: const EdgeInsets.symmetric(horizontal: 6.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         decoration: BoxDecoration(
-            color: enabled ? Colors.black : Color(0xffeeeeee),
+            color: enabled ? Colors.black : const Color(0xffeeeeee),
             borderRadius: BorderRadius.circular(12.0)),
         child: Text(
-          "$val",
+          val,
           style: Theme.of(context).textTheme.headline5?.copyWith(
               color: enabled ? Colors.white : Colors.black, fontSize: 15.0),
         ));
@@ -214,14 +214,14 @@ class AmbulanceBookingDetailsWidgetState
     return GestureDetector(
       onTap: onTap,
       child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 6.0),
-          padding: EdgeInsets.all(12.0),
+          margin: const EdgeInsets.symmetric(horizontal: 6.0),
+          padding: const EdgeInsets.all(12.0),
           decoration: BoxDecoration(
-              color: enabled ? Colors.black : Color(0xffeeeeee),
+              color: enabled ? Colors.black : const Color(0xffeeeeee),
               borderRadius: BorderRadius.circular(12.0)),
           child: text != null
               ? Text(
-                  "$text",
+                  text,
                   style: Theme.of(context).textTheme.headline1?.copyWith(
                       color: enabled ? Colors.white : Colors.black,
                       fontSize: 15.0),
@@ -236,9 +236,9 @@ class AmbulanceBookingDetailsWidgetState
 
   Widget buildInputWidget(String text, String hint, Function() onTap) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
       decoration: BoxDecoration(
-        color: Color(0xffeeeeee).withOpacity(0.5),
+        color: const Color(0xffeeeeee).withOpacity(0.5),
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Text(

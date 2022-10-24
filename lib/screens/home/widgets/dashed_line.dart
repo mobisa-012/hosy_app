@@ -6,7 +6,7 @@ class DashedLine extends StatelessWidget {
   final Color color;
 
   const DashedLine(
-      {this.height = 1, this.color = Colors.black, this.dashWidth = 5.0});
+      {super.key, this.height = 1, this.color = Colors.black, this.dashWidth = 5.0});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +16,8 @@ class DashedLine extends StatelessWidget {
         final dashHeight = height;
         final dashCount = (boxWidth / (2 * dashWidth)).floor();
         return Flex(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          direction: Axis.horizontal,
           children: List.generate(dashCount, (index) {
             return SizedBox(
               width: dashWidth,
@@ -25,8 +27,6 @@ class DashedLine extends StatelessWidget {
               ),
             );
           }),
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          direction: Axis.horizontal,
         );
       },
     );

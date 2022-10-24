@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names
+// ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names, library_private_types_in_public_api, use_build_context_synchronously, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,15 +14,17 @@ import 'package:hosy/screens/home/bloc/ambulance_booking_event.dart';
 import 'package:hosy/screens/home/bloc/ambulance_booking_state.dart';
 
 class AmbulanceMap extends StatefulWidget {
+  const AmbulanceMap({super.key});
+
   @override
   _AmbulanceMapState createState() => _AmbulanceMapState();
 }
 
 class _AmbulanceMapState extends State<AmbulanceMap> {
   late GoogleMapController controller;
-  Set<Marker> markers = Set<Marker>();
-  Set<Polyline> polylines = Set<Polyline>();
-  Set<Circle> circles = Set<Circle>();
+  Set<Marker> markers = <Marker>{};
+  Set<Polyline> polylines = <Polyline>{};
+  Set<Circle> circles = <Circle>{};
   late GoogleLocation currentLocation;
 
   @override
@@ -72,7 +74,7 @@ class _AmbulanceMapState extends State<AmbulanceMap> {
         },
         child: GoogleMap(
           initialCameraPosition:
-              CameraPosition(target: LatLng(17.0, 24.0), zoom: 8.0),
+              const CameraPosition(target: LatLng(17.0, 24.0), zoom: 8.0),
           onMapCreated: (controller) async {
             this.controller = controller;
             BlocProvider.of<AmbulanceBookingBloc>(context)
@@ -96,7 +98,7 @@ class _AmbulanceMapState extends State<AmbulanceMap> {
     GoogleLocation currentPositon =
         (await LocationController.getCurrentLocation());
     circles.add(createCircle(Colors.blueAccent, currentPositon.position));
-    if (this.controller == null) {
+    if (controller == null) {
       return;
     }
     controller.moveCamera(CameraUpdate.newLatLng(currentPositon.position));
@@ -105,9 +107,8 @@ class _AmbulanceMapState extends State<AmbulanceMap> {
       final Uint8List? markerIcon =
           await getBytesFromAsset("images/Ambulance_marker.png", 100);
       BitmapDescriptor descriptor = BitmapDescriptor.fromBytes(markerIcon!);
-      print('Ambulance ${Ambulance.id}');
       markers.add(Marker(
-        markerId: MarkerId("${Ambulance.id}"),
+        markerId: MarkerId(Ambulance.id),
         position:
             LatLng(Ambulance.position.latitude, Ambulance.position.longitude),
         infoWindow: InfoWindow(
@@ -125,7 +126,7 @@ class _AmbulanceMapState extends State<AmbulanceMap> {
         await getBytesFromAsset("images/location.png", 100);
     BitmapDescriptor descriptor = BitmapDescriptor.fromBytes(markerIcon!);
     return Marker(
-      markerId: MarkerId("${position.toString()}"),
+      markerId: MarkerId(position.toString()),
       position: position,
       infoWindow: InfoWindow(
         title: title,
@@ -145,7 +146,7 @@ class _AmbulanceMapState extends State<AmbulanceMap> {
     for (int i = 1; i < result.length; i++) {
       polylines.add(
         Polyline(
-            polylineId: PolylineId("${result[i].toString()}"),
+            polylineId: PolylineId(result[i].toString()),
             color: Colors.black,
             points: [result[i - 1], result[i]],
             width: 3,
@@ -158,7 +159,7 @@ class _AmbulanceMapState extends State<AmbulanceMap> {
             zIndex: 1),
       );
     }
-    result.forEach((val) {});
+    for (var val in result) {}
 
     setState(() {});
     controller.animateCamera(CameraUpdate.newLatLngZoom(result[0], 14));

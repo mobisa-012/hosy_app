@@ -22,9 +22,9 @@ class UserLocationController {
 
   static Future<List<UserLocation>> getSavedLocations() async {
     return [
-      UserLocation.named('Home', UserLocationType.Home, const LatLng(8, 10), 5),
+      UserLocation.named('Home', UserLocationType.home, const LatLng(8, 10), 5),
       UserLocation.named(
-          'KICC', UserLocationType.Office, const LatLng(0, 0), 10)
+          'KICC', UserLocationType.office, const LatLng(0, 0), 10)
     ];
   }
 }

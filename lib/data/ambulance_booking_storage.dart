@@ -17,7 +17,7 @@ class AmbulanceBookingStorage {
       ambulanceBooking.bookingTime,
       AmbulanceTypes.premium,
       6000.50,
-      PaymentMethod('5', 'Pay via M-pesa', PathConstants.payment, 'Lipa na M-pesa and get a 10% discount'),
+      const PaymentMethod('5', 'Pay via M-pesa', PathConstants.payment, 'Lipa na M-pesa and get a 10% discount'),
       'Get 30% off if you\'re within Embakasi'
     );
   }

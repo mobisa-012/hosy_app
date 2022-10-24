@@ -3,6 +3,8 @@ import 'package:hosy/core/services/user.dart';
 import 'package:hosy/data/user_controller.dart';
 
 class HomeDrawer extends StatelessWidget {
+  const HomeDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     User user = UserController.getUser();
@@ -13,7 +15,7 @@ class HomeDrawer extends StatelessWidget {
         children: <Widget>[
           Container(
             color: Colors.black,
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 24),
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
             child: SafeArea(
               bottom: false,
               child: Row(
@@ -33,7 +35,7 @@ class HomeDrawer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 12.0,
                   ),
                   Expanded(
@@ -43,15 +45,15 @@ class HomeDrawer extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           user.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 4.0,
                         ),
                         Text(
                           user.mobileNumber,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white60,
                               fontSize: 12.0,
                               fontWeight: FontWeight.w600),
@@ -79,7 +81,7 @@ class HomeDrawer extends StatelessWidget {
       onTap: onPressed,
       title: Text(
         title,
-        style: TextStyle(color: Colors.black45),
+        style: const TextStyle(color: Colors.black45),
       ),
       leading: Icon(
         iconData,

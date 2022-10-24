@@ -7,6 +7,8 @@ import 'package:hosy/screens/home/widgets/dashed_line.dart';
 
 
 class AmbulanceBookingStateWidget extends StatelessWidget {
+  const AmbulanceBookingStateWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
@@ -38,7 +40,7 @@ class AmbulanceBookingStateWidget extends StatelessWidget {
         }
         return Container(
           color: Colors.black,
-          padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -52,17 +54,17 @@ class AmbulanceBookingStateWidget extends StatelessWidget {
                         color: Colors.white, fontWeight: FontWeight.normal),
                   ),
                   IconButton(
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                       onPressed: () {
                         showDialog(
                             context: context,
                             builder: (context) =>
-                                AmbulanceBookingCancellationDialog());
+                                const AmbulanceBookingCancellationDialog());
                       },
                       color: Colors.white),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12.0,
               ),
               Row(children: [
@@ -86,7 +88,7 @@ class AmbulanceBookingStateWidget extends StatelessWidget {
                 ),
                 buildTab(context, "4", selectedTab >= 4),
               ]),
-              SizedBox(
+              const SizedBox(
                 height: 12.0,
               )
             ],
@@ -98,12 +100,12 @@ class AmbulanceBookingStateWidget extends StatelessWidget {
 
   Widget buildTab(BuildContext context, String val, bool enabled) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         decoration: BoxDecoration(
             color: enabled ? Colors.white : Colors.white.withOpacity(0.2),
             borderRadius: BorderRadius.circular(12.0)),
         child: Text(
-          "$val",
+          val,
           style: Theme.of(context).textTheme.headline5?.copyWith(
               color: enabled ? Colors.black : Colors.white, fontSize: 15),
         ));

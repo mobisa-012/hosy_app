@@ -9,6 +9,8 @@ import 'package:hosy/screens/home/widgets/rounded_button.dart';
 
 
 class AmbulanceBookingNotConfirmedWidget extends StatefulWidget {
+  const AmbulanceBookingNotConfirmedWidget({super.key});
+
   @override
   AmbulanceBookingNotConfirmedWidgetState createState() =>
       AmbulanceBookingNotConfirmedWidgetState();
@@ -33,7 +35,7 @@ class AmbulanceBookingNotConfirmedWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(12.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -42,20 +44,20 @@ class AmbulanceBookingNotConfirmedWidgetState
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 buildDriver(),
-                SizedBox(
+                const SizedBox(
                   height: 12.0,
                 ),
                 buildPriceDetails(),
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 Row(
                   children: <Widget>[
-                    Icon(
+                    const Icon(
                       Icons.location_on,
                       size: 22.0,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 4.0,
                     ),
                     Expanded(
@@ -69,10 +71,10 @@ class AmbulanceBookingNotConfirmedWidgetState
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24.0,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 32.0,
                 ),
               ],
@@ -84,7 +86,7 @@ class AmbulanceBookingNotConfirmedWidgetState
                 onTap: () {},
                 iconData: Icons.call, text: '',
               ),
-              SizedBox(
+              const SizedBox(
                 width: 24.0,
               ),
               Expanded(
@@ -95,7 +97,7 @@ class AmbulanceBookingNotConfirmedWidgetState
                     showDialog(
                         context: context,
                         builder: (context) =>
-                            AmbulanceBookingCancellationDialog());
+                            const AmbulanceBookingCancellationDialog());
                   }, iconData: Icons.clear,
                 ),
               )
@@ -112,13 +114,13 @@ class AmbulanceBookingNotConfirmedWidgetState
         ClipRRect(
           borderRadius: BorderRadius.circular(12.0),
           child: Image.network(
-            "${driver.driverPic}",
+            driver.driverPic,
             width: 48.0,
             height: 48.0,
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 16.0,
         ),
         Expanded(
@@ -126,30 +128,30 @@ class AmbulanceBookingNotConfirmedWidgetState
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              "${driver.driverName}",
+              driver.driverName,
               style: Theme.of(context).textTheme.headline6,
             ),
-            SizedBox(
+            const SizedBox(
               height: 4.0,
             ),
             Text(
-              "${driver.ambulanceDetails}",
+              driver.ambulanceDetails,
               style: Theme.of(context).textTheme.subtitle2,
             )
           ],
         )),
-        SizedBox(
+        const SizedBox(
           width: 8.0,
         ),
         Container(
           decoration: BoxDecoration(
-              color: Color(0xffeeeeee).withOpacity(0.5),
+              color: const Color(0xffeeeeee).withOpacity(0.5),
               borderRadius: BorderRadius.circular(12.0)),
-          padding: EdgeInsets.all(6.0),
+          padding: const EdgeInsets.all(6.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Icon(
+              const Icon(
                 Icons.star,
                 color: Colors.yellow,
                 size: 20.0,
@@ -168,8 +170,8 @@ class AmbulanceBookingNotConfirmedWidgetState
   Widget buildPriceDetails() {
     return Column(
       children: <Widget>[
-        Divider(),
-        SizedBox(
+        const Divider(),
+        const SizedBox(
           height: 14.0,
         ),
         Row(
@@ -180,10 +182,10 @@ class AmbulanceBookingNotConfirmedWidgetState
             buildIconText("\$150", Icons.monetization_on),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 14.0,
         ),
-        Divider()
+        const Divider()
       ],
     );
   }

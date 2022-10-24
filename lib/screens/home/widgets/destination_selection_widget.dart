@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,6 +11,8 @@ import 'package:hosy/screens/home/widgets/ease_in_widget.dart';
 
 
 class DestinationSelctionWidget extends StatefulWidget {
+  const DestinationSelctionWidget({super.key});
+
   @override
   _DestinationSelctionWidgetState createState() =>
       _DestinationSelctionWidgetState();
@@ -28,7 +32,7 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
       loadDestinations();
     });
     animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     animation = CurvedAnimation(
       curve: Curves.easeInExpo,
       parent: animationController,
@@ -55,7 +59,7 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
         : AnimatedBuilder(
             animation: animation,
             builder: (context, child) {
-              return Container(
+              return SizedBox(
                 height: 150.0 * animation.value,
                 child: child,
               );
@@ -84,8 +88,8 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
         },
         child: Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.all(12.0),
-          padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 28.0),
+          margin: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 28.0),
           decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -99,27 +103,27 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xffeeeeee),
                   shape: BoxShape.circle,
                 ),
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Icon(
-                  location.locationType == UserLocationType.Home
+                  location.locationType == UserLocationType.home
                       ? Icons.home
                       : Icons.work,
                   size: 22.0,
                   color: Colors.black54,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12.0,
               ),
               Text(
-                "${location.locationType.toString().replaceFirst("UserLocationType.", "")}",
+                location.locationType.toString().replaceFirst("UserLocationType.", ""),
                 style: Theme.of(context).textTheme.headline6,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4.0,
               ),
               Text(
@@ -137,12 +141,12 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
   Widget buildNewDestinationWidget() {
     return EaseInWidget(
       onTap: () {
-        selectDestination(LatLng(0, 0));
+        selectDestination(const LatLng(0, 0));
       },
       child: Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.all(12.0),
-        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 28.0),
+        margin: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 28.0),
         decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
@@ -156,25 +160,25 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.circle,
               ),
-              padding: EdgeInsets.all(8.0),
-              child: Icon(
+              padding: const EdgeInsets.all(8.0),
+              child: const Icon(
                 Icons.my_location,
                 size: 22.0,
                 color: Colors.white,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
             Text(
               "New Ride",
               style: Theme.of(context).textTheme.headline6,
             ),
-            SizedBox(
+            const SizedBox(
               height: 4.0,
             ),
             Text(

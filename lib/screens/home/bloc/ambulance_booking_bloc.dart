@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, prefer_typing_uninitialized_variables
 import 'package:bloc/bloc.dart';
 import 'package:hosy/core/const/path_constants.dart';
 import 'package:hosy/core/services/ambulance.dart';
@@ -20,7 +20,7 @@ class AmbulanceBookingBloc
       : super(initialState);
 
   AmbulanceBookingState get initialState =>
-      AmbulanceBookingNotInitializedState();
+      const AmbulanceBookingNotInitializedState();
 
   Stream<AmbulanceBookingState> mapEventToState(
       AmbulanceBookingEvent event) async* {
@@ -46,7 +46,7 @@ class AmbulanceBookingBloc
           DateTime.now(),
           AmbulanceTypes.standard,
           6000.0,
-          PaymentMethod('5', 'Pay via M-pesa', PathConstants.payment,
+          const PaymentMethod('5', 'Pay via M-pesa', PathConstants.payment,
               'Lipa na M-pesa and get a 10% discount'),
           'Get 20% of when ordering today'));
       AmbulanceBooking ambulanceBooking =
@@ -57,7 +57,7 @@ class AmbulanceBookingBloc
       var _;
       yield AmbulanceBookingLoadingState(
           state: AmbulanceNotSelectedState(booking: (_)));
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       await AmbulanceBookingStorage.addDetails(AmbulanceBooking.named(
           event.id,
           event.source,
@@ -78,7 +78,7 @@ class AmbulanceBookingBloc
       var _;
       yield AmbulanceBookingLoadingState(
           state:
-              PaymentNotInitializedState(booking: (_), methodsAvaiable: []));
+              PaymentNotInitializedState(booking: (_), methodsAvaiable: const []));
       AmbulanceBooking prevBooking =
           await AmbulanceBookingStorage.getAmbulanceBooking();
       double price = await AmbulanceBookingController.getPrice(prevBooking);
@@ -91,7 +91,7 @@ class AmbulanceBookingBloc
         ambulanceBooking.bookingTime,
         AmbulanceTypes.premium,
         6000.50,
-        PaymentMethod('5', 'Pay via M-pesa', PathConstants.payment,
+        const PaymentMethod('5', 'Pay via M-pesa', PathConstants.payment,
             'Lipa na M-pesa and get a 10% discount'),
         'Get 30% off if you\'re within Embakasi',
       ));
@@ -105,7 +105,7 @@ class AmbulanceBookingBloc
     if (event is PaymentMadeEvent) {
       var _;
       yield AmbulanceBookingLoadingState(
-          state: PaymentNotInitializedState(booking: (_), methodsAvaiable: []));
+          state: PaymentNotInitializedState(booking: (_), methodsAvaiable: const []));
       var ambulanceBooking;
       AmbulanceBooking booking =
           await AmbulanceBookingStorage.addDetails(AmbulanceBooking.named(
@@ -116,7 +116,7 @@ class AmbulanceBookingBloc
         ambulanceBooking.bookingTime,
         AmbulanceTypes.premium,
         6000.50,
-        PaymentMethod('5', 
+        const PaymentMethod('5', 
         'Pay via M-pesa', 
         PathConstants.payment,
        'Lipa na M-pesa and get a 10% discount'),
@@ -126,13 +126,13 @@ class AmbulanceBookingBloc
           await AmbulanceBookingController.getAmbulanceDriver(booking);
       yield AmbulanceNotConfirmedState(
           booking: booking, driver: ambulanceDriver);
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       yield AmbulanceBookingConfirmedState(
           booking: booking, driver: ambulanceDriver);
     }
     if (event is AmbulanceBookingCancelEvent) {
       yield AmbulanceBookingCancelledState();
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
       List<Ambulance> ambulance =
           (await AmbulanceBookingController.getAmbulanceAvailable());
       yield AmbulanceBookingNotSelectedState(ambulanceAvailable: ambulance);

@@ -21,8 +21,8 @@ class RoundedButton extends StatelessWidget {
       child: Material(
         child: Container(
           padding: text != null
-              ? EdgeInsets.symmetric(vertical: 22.0, horizontal: 16.0)
-              : EdgeInsets.symmetric(vertical: 19.0, horizontal: 22.0),
+              ? const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16.0)
+              : const EdgeInsets.symmetric(vertical: 19.0, horizontal: 22.0),
           alignment: Alignment.center,
           decoration: BoxDecoration(
               color: Colors.black,
@@ -35,7 +35,7 @@ class RoundedButton extends StatelessWidget {
               ]),
           child: text != null
               ? Text(
-                  "$text",
+                  text,
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                         color: Colors.white,
                       ),

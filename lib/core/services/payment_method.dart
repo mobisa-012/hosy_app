@@ -7,7 +7,7 @@ class PaymentMethod extends Equatable {
   final String icon;
   final String description;
 
-  PaymentMethod(
+  const PaymentMethod(
      this.id,
        this.title,
      this.icon,

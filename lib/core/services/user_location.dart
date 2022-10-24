@@ -1,6 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-enum UserLocationType { Home, Office }
+enum UserLocationType { home, office }
 
 class UserLocation {
   final String name;

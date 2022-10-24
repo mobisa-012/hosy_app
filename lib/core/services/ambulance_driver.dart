@@ -7,10 +7,10 @@ class AmbulanceDriver extends Equatable {
   final String ambulanceDetails;
   final String driverPic;
 
-  AmbulanceDriver(this.id, this.driverName, this.driverPic, this.driverRating,
+  const AmbulanceDriver(this.id, this.driverName, this.driverPic, this.driverRating,
       this.ambulanceDetails);
 
-  AmbulanceDriver.named(this.id, this.driverName, this.driverPic,
+  const AmbulanceDriver.named(this.id, this.driverName, this.driverPic,
       this.driverRating, this.ambulanceDetails);
 
   @override

@@ -7,7 +7,7 @@ import 'package:hosy/core/services/google_location.dart';
 import 'package:hosy/core/services/payment_method.dart';
 
 abstract class AmbulanceBookingEvent extends Equatable {
-  AmbulanceBookingEvent();
+  const AmbulanceBookingEvent();
 }
 
 class AmbulanceBookingStartEvent extends AmbulanceBookingEvent {
@@ -20,7 +20,7 @@ class AmbulanceBookingStartEvent extends AmbulanceBookingEvent {
 class DestinationSelectedEvent extends AmbulanceBookingEvent {
   final LatLng destination;
 
-  DestinationSelectedEvent({required this.destination});
+  const DestinationSelectedEvent({required this.destination});
 
   @override
   List<Object> get props => [destination];
@@ -50,7 +50,7 @@ class DetailsSubmittedEvent extends AmbulanceBookingEvent {
 class AmbulanceSelectedEvent extends AmbulanceBookingEvent {
   final AmbulanceTypes ambulanceType;
 
-  AmbulanceSelectedEvent({required this.ambulanceType});
+  const AmbulanceSelectedEvent({required this.ambulanceType});
 
   @override
   List<Object> get props => [ambulanceType];
@@ -59,7 +59,7 @@ class AmbulanceSelectedEvent extends AmbulanceBookingEvent {
 class PaymentMadeEvent extends AmbulanceBookingEvent {
   final PaymentMethod paymentMethod;
 
-  PaymentMadeEvent({required this.paymentMethod});
+  const PaymentMadeEvent({required this.paymentMethod});
 
   @override
   List<Object> get props => [paymentMethod];

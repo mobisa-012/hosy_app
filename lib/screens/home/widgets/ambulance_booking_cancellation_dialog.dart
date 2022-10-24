@@ -4,14 +4,16 @@ import 'package:hosy/screens/home/bloc/ambulance_booking_bloc.dart';
 import 'package:hosy/screens/home/bloc/ambulance_booking_event.dart';
 
 class AmbulanceBookingCancellationDialog extends StatelessWidget {
+  const AmbulanceBookingCancellationDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Cancel Ride"),
-      content: Text("Do you want to cancel ride?"),
+      title: const Text("Cancel Ride"),
+      content: const Text("Do you want to cancel ride?"),
       actions: <Widget>[
         ElevatedButton(
-          child: Text(
+          child: const Text(
             "Cancel",
             style: TextStyle(fontSize: 16.0),
           ),
@@ -20,7 +22,7 @@ class AmbulanceBookingCancellationDialog extends StatelessWidget {
           },
         ),
         ElevatedButton(
-          child: Text(
+          child: const Text(
             "Ok",
             style: TextStyle(fontSize: 16.0),
           ),

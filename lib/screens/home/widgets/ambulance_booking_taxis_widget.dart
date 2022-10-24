@@ -10,6 +10,8 @@ import 'package:hosy/screens/home/bloc/ambulance_booking_state.dart';
 import 'package:hosy/screens/home/widgets/rounded_button.dart';
 
 class AmbulanceBookingAmbulanceWidget extends StatefulWidget {
+  const AmbulanceBookingAmbulanceWidget({super.key});
+
   @override
   AmbulanceWidgetState createState() => AmbulanceWidgetState();
 }
@@ -28,85 +30,81 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
             as AmbulanceNotSelectedState)
         .booking;
     selectedAmbulanceType = ambulanceBooking.ambulanceType;
-    if (selectedAmbulanceType == null) {
-      selectedAmbulanceType = AmbulanceTypes.standard;
-    }
+    selectedAmbulanceType;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 6.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    "Choose Ambulance",
-                    style: Theme.of(context).textTheme.headline5,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  buildAmbulance(),
-                  buildPriceDetails(),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  buildLocation(ambulanceBooking.source.areaDetails, "From"),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Divider(),
-                  ),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  buildLocation(ambulanceBooking.destination.areaDetails, "To"),
-                ],
-              ),
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 6.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "Choose Ambulance",
+                  style: Theme.of(context).textTheme.headline5,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                buildAmbulance(),
+                buildPriceDetails(),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                buildLocation(ambulanceBooking.source.areaDetails, "From"),
+                const SizedBox(
+                  height: 12.0,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Divider(),
+                ),
+                const SizedBox(
+                  height: 12.0,
+                ),
+                buildLocation(ambulanceBooking.destination.areaDetails, "To"),
+              ],
             ),
           ),
-          Row(
-            children: <Widget>[
-              RoundedButton(
+        ),
+        Row(
+          children: <Widget>[
+            RoundedButton(
+              onTap: () {
+                BlocProvider.of<AmbulanceBookingBloc>(context)
+                    .add(BackPressedEvent());
+              },
+              iconData: Icons.keyboard_backspace,
+              text: '',
+            ),
+            const SizedBox(
+              width: 18.0,
+            ),
+            Expanded(
+              flex: 2,
+              child: RoundedButton(
+                text: "Request Trip",
                 onTap: () {
-                  BlocProvider.of<AmbulanceBookingBloc>(context)
-                      .add(BackPressedEvent());
+                  BlocProvider.of<AmbulanceBookingBloc>(context).add(
+                      AmbulanceSelectedEvent(
+                          ambulanceType: selectedAmbulanceType));
                 },
-                iconData: Icons.keyboard_backspace,
-                text: '',
+                iconData: Icons.request_page,
               ),
-              SizedBox(
-                width: 18.0,
-              ),
-              Expanded(
-                flex: 2,
-                child: RoundedButton(
-                  text: "Request Trip",
-                  onTap: () {
-                    BlocProvider.of<AmbulanceBookingBloc>(context).add(
-                        AmbulanceSelectedEvent(
-                            ambulanceType: selectedAmbulanceType));
-                  },
-                  iconData: Icons.request_page,
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+            )
+          ],
+        ),
+      ],
     );
   }
 
@@ -138,7 +136,7 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12.0,
                         ),
                         Text(
@@ -157,8 +155,8 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
   Widget buildPriceDetails() {
     return Column(
       children: <Widget>[
-        Divider(),
-        SizedBox(
+        const Divider(),
+        const SizedBox(
           height: 14.0,
         ),
         Row(
@@ -169,10 +167,10 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
             buildIconText("\$150", Icons.monetization_on),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 14.0,
         ),
-        Divider()
+        const Divider()
       ],
     );
   }
@@ -196,11 +194,11 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
   Widget buildLocation(String area, String label) {
     return Row(
       children: <Widget>[
-        Text(
+        const Text(
           "•",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32.0),
         ),
-        SizedBox(
+        const SizedBox(
           width: 12.0,
         ),
         Expanded(
@@ -209,11 +207,11 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "$label",
-                style: TextStyle(fontSize: 14.0, color: Colors.black38),
+                label,
+                style: const TextStyle(fontSize: 14.0, color: Colors.black38),
               ),
               Text(
-                "$area",
+                area,
                 style: Theme.of(context).textTheme.headline6,
               )
             ],

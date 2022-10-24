@@ -17,7 +17,7 @@ class AmbulanceBookingController {
 
   static Future<AmbulanceDriver> getAmbulanceDriver(
       AmbulanceBooking booking) async {
-    return AmbulanceDriver.named(
+    return const AmbulanceDriver.named(
         '82', 'Mobisa', PathConstants.profile1, 3.5, 'KBN 562R');
   }
 

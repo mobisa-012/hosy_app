@@ -38,9 +38,9 @@ class _HomePageState extends State<HomePage> {
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
         child: Scaffold(
-          endDrawer: HomeDrawer(),
+          endDrawer: const HomeDrawer(),
           body: Stack(
-            children: <Widget>[AmbulanceMap(), HomeAppBar()],
+            children: const <Widget>[AmbulanceMap(), HomeAppBar()],
           ),
           bottomSheet: BlocBuilder<AmbulanceBookingBloc, AmbulanceBookingState>(
               builder: (BuildContext context, AmbulanceBookingState state) {
@@ -48,12 +48,12 @@ class _HomePageState extends State<HomePage> {
               return Container();
             }
             if (state is AmbulanceBookingNotSelectedState) {
-              return DestinationSelctionWidget();
+              return const DestinationSelctionWidget();
             }
             if (state is AmbulanceBookingConfirmedState) {
-              return AmbulanceBookingConfirmedWidget();
+              return const AmbulanceBookingConfirmedWidget();
             }
-            return AmbulanceBookingHomeWidget();
+            return const AmbulanceBookingHomeWidget();
           }),
         ),
       ),

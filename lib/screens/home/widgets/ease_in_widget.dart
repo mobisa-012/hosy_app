@@ -17,7 +17,7 @@ class _EaseInWidgetState extends State<EaseInWidget> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    controller=AnimationController(vsync: this,duration: Duration(milliseconds: 200,),value: 1.0);
+    controller=AnimationController(vsync: this,duration: const Duration(milliseconds: 200,),value: 1.0);
     easeInAnimation=Tween(begin:1.0,end:0.95).animate(
       CurvedAnimation(parent: controller, curve: Curves.easeIn,),
     );

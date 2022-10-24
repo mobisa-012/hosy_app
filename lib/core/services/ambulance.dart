@@ -11,10 +11,10 @@ class Ambulance extends Equatable {
   final AmbulanceTypes ambulanceType;
   final LatLng position;
 
-  Ambulance(this.id, this.title, this.isAvailable, this.plateNo,
+  const Ambulance(this.id, this.title, this.isAvailable, this.plateNo,
       this.ambulanceType, this.position);
 
-  Ambulance.named(
+  const Ambulance.named(
     this.id,
     this.title,
     this.isAvailable,

@@ -10,6 +10,8 @@ import 'package:hosy/screens/home/widgets/ambulance_booking_taxis_widget.dart';
 import 'package:hosy/screens/home/widgets/loading_shimmer.dart';
 
 class AmbulanceBookingHomeWidget extends StatefulWidget {
+  const AmbulanceBookingHomeWidget({super.key});
+
   @override
   AmbulanceBookingHomeWidgetState createState() =>
       AmbulanceBookingHomeWidgetState();
@@ -23,9 +25,8 @@ class AmbulanceBookingHomeWidgetState extends State<AmbulanceBookingHomeWidget>
   @override
   void initState() {
     super.initState();
-    print("Home Build ");
     animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 200));
     animation = CurvedAnimation(
       curve: Curves.easeIn,
       parent: animationController,
@@ -40,24 +41,25 @@ class AmbulanceBookingHomeWidgetState extends State<AmbulanceBookingHomeWidget>
     double requiredHeight = MediaQuery.of(context).size.height * 2.5 / 3;
     return BlocListener<AmbulanceBookingBloc, AmbulanceBookingState>(
       listener: (context, state) async {
-        if (state is AmbulanceBookingCancelledState)
+        if (state is AmbulanceBookingCancelledState) {
           await animationController.reverse(from: 1.0);
+        }
       },
       child: AnimatedBuilder(
           animation: animation,
           builder: (context, child) {
-            return Container(
+            return SizedBox(
               height: requiredHeight * animation.value,
               child: child,
             );
           },
           child: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: requiredHeight,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  ClipRRect(
+                  const ClipRRect(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(40.0),
                           topRight: Radius.circular(40.0)),
@@ -66,30 +68,30 @@ class AmbulanceBookingHomeWidgetState extends State<AmbulanceBookingHomeWidget>
                     child: Container(
                       color: Colors.black,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(36.0),
                             topRight: Radius.circular(36.0)),
                         child: Container(
                           color: Colors.white,
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           height: MediaQuery.of(context).size.height * 1 / 1.6,
-                          margin: EdgeInsets.only(bottom: 24.0),
+                          margin: const EdgeInsets.only(bottom: 24.0),
                           child: BlocBuilder<AmbulanceBookingBloc,
                               AmbulanceBookingState>(
                             builder: (context, currentState) {
                               switch (currentState.runtimeType) {
                                 case AmbulanceBookingLoadingState:
-                                  return LoadingShimmer();
+                                  return const LoadingShimmer();
                                 case DetailsNotFilledState:
-                                  return AmbulanceBookingDetailsWidget();
+                                  return const AmbulanceBookingDetailsWidget();
                                 case AmbulanceNotSelectedState:
-                                  return AmbulanceBookingAmbulanceWidget();
+                                  return const AmbulanceBookingAmbulanceWidget();
                                 case PaymentNotInitializedState:
-                                  return AmbulanceBookingPaymentsWidget();
+                                  return const AmbulanceBookingPaymentsWidget();
                                 case AmbulanceNotConfirmedState:
-                                  return AmbulanceBookingNotConfirmedWidget();
+                                  return const AmbulanceBookingNotConfirmedWidget();
                                 default:
-                                  return Center(
+                                  return const Center(
                                     child: Text("Not Initialized"),
                                   );
                               }
