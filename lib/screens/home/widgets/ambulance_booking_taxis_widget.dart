@@ -85,7 +85,8 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
                   BlocProvider.of<AmbulanceBookingBloc>(context)
                       .add(BackPressedEvent());
                 },
-                iconData: Icons.keyboard_backspace, text: '',
+                iconData: Icons.keyboard_backspace,
+                text: '',
               ),
               SizedBox(
                 width: 18.0,
@@ -96,9 +97,10 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
                   text: "Request Trip",
                   onTap: () {
                     BlocProvider.of<AmbulanceBookingBloc>(context).add(
-                        AmbulanceelectedEvent(
+                        AmbulanceSelectedEvent(
                             ambulanceType: selectedAmbulanceType));
-                  }, iconData: Icons.request_page,
+                  },
+                  iconData: Icons.request_page,
                 ),
               )
             ],
@@ -113,40 +115,42 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
   Widget buildAmbulance() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: ambulanceTypes.map((val) => GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedAmbulanceType = val;
-              });
-            },
-            child: Opacity(
-              opacity: val == selectedAmbulanceType ? 1.0 : 0.5,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(16.0),
-                      child: Image.asset(
-                        "images/Ambulance.jpg",
-                        height: MediaQuery.of(context).size.width / 6,
-                        width: MediaQuery.of(context).size.width / 6,
-                        fit: BoxFit.cover,
-                      ),
+      children: ambulanceTypes
+          .map((val) => GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedAmbulanceType = val;
+                  });
+                },
+                child: Opacity(
+                  opacity: val == selectedAmbulanceType ? 1.0 : 0.5,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16.0),
+                          child: Image.asset(
+                            "images/Ambulance.jpg",
+                            height: MediaQuery.of(context).size.width / 6,
+                            width: MediaQuery.of(context).size.width / 6,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 12.0,
+                        ),
+                        Text(
+                          val.toString().replaceFirst("AmbulanceType.", ""),
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 12.0,
-                    ),
-                    Text(
-                      val.toString().replaceFirst("AmbulanceType.", ""),
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          )).toList(),
+              ))
+          .toList(),
     );
   }
 
