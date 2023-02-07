@@ -67,7 +67,7 @@ class AmbulanceBookingConfirmedWidgetState
                               "Ride Info",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline6
+                                  .titleLarge
                                   ?.copyWith(color: Colors.white),
                             ),
                           ),
@@ -129,14 +129,14 @@ class AmbulanceBookingConfirmedWidgetState
           children: <Widget>[
             Text(
               driver.driverName,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 4.0,
             ),
             Text(
               driver.ambulanceDetails,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             )
           ],
         )),
@@ -158,7 +158,7 @@ class AmbulanceBookingConfirmedWidgetState
               ),
               Text(
                 "${driver.driverRating}",
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ],
           ),

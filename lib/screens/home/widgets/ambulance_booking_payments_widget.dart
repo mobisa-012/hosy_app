@@ -45,7 +45,7 @@ class AmbulanceBookingPaymentsWidgetState
                 children: <Widget>[
                   Text(
                     "Select Payment",
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   ListView.separated(
                     itemBuilder: (context, index) {
@@ -61,7 +61,7 @@ class AmbulanceBookingPaymentsWidgetState
                   ),
                   Text(
                     "Promo Code",
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox(
                     height: 18.0,
@@ -133,14 +133,14 @@ class AmbulanceBookingPaymentsWidgetState
                 children: <Widget>[
                   Text(
                     method.title,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
                     height: 4.0,
                   ),
                   Text(
                     method.description,
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],
               ),
@@ -171,7 +171,7 @@ class AmbulanceBookingPaymentsWidgetState
         text,
         style: Theme.of(context)
             .textTheme
-            .headline6
+            .titleLarge
             ?.copyWith(color: text == null ? Colors.black45 : Colors.black),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,

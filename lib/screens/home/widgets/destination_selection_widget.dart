@@ -121,7 +121,7 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
               ),
               Text(
                 location.locationType.toString().replaceFirst("UserLocationType.", ""),
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(
                 height: 4.0,
@@ -130,7 +130,7 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
                 "${location.minutesFar} minutes",
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle2
+                    .titleSmall
                     ?.copyWith(fontSize: 12.0),
               )
             ],
@@ -176,7 +176,7 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
             ),
             Text(
               "New Ride",
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 4.0,
@@ -185,7 +185,7 @@ class _DestinationSelctionWidgetState extends State<DestinationSelctionWidget>
               "Select Dest.",
               style: Theme.of(context)
                   .textTheme
-                  .subtitle2
+                  .titleSmall
                   ?.copyWith(fontSize: 12.0),
             )
           ],

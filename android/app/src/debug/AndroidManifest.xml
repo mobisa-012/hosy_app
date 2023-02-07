@@ -1,7 +1,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.Ambulance_app">
+    package="com.example.Ambulance_app"
+    android:versionCode ='1'
+    android:versionName='1.0'>
+
+    <uses-sdk
+    android:minSdkVersion='20'
+    android:targetSdkVersion ='31'/>
     <!-- Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <application 
+    android:allowBackup ='true'
+    android:icon="@drawable/ic_launcher"
+    android:label="@string/app_name"
+    android:theme="@style/AppTheme">
+    <activity 
+    android:name = ".NotificationActivity"
+    android:exported="true" />
+    
+    <activity
+    android:showWhenLocked="true"
+    android:turnScreenOn="true"/>
+    </application>
 </manifest>

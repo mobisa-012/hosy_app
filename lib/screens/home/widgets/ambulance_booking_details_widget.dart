@@ -52,7 +52,7 @@ class AmbulanceBookingDetailsWidgetState
                 ),
                 Text(
                   "Address",
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(
                   height: 24.0,
@@ -68,7 +68,7 @@ class AmbulanceBookingDetailsWidgetState
                 ),
                 Text(
                   "Seat and Time",
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(
                   height: 24.0,
@@ -122,7 +122,7 @@ class AmbulanceBookingDetailsWidgetState
       children: <Widget>[
         Text(
           "Need Seat",
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -150,13 +150,13 @@ class AmbulanceBookingDetailsWidgetState
           children: <Widget>[
             Text(
               "Schedule Time",
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             bookingTime == null
                 ? Container()
                 : Text(
                     "${bookingTime.day}-${bookingTime.month}-${bookingTime.year}",
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: Theme.of(context).textTheme.titleSmall,
                   )
           ],
         ),
@@ -201,7 +201,7 @@ class AmbulanceBookingDetailsWidgetState
             borderRadius: BorderRadius.circular(12.0)),
         child: Text(
           val,
-          style: Theme.of(context).textTheme.headline5?.copyWith(
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: enabled ? Colors.white : Colors.black, fontSize: 15.0),
         ));
   }
@@ -222,7 +222,7 @@ class AmbulanceBookingDetailsWidgetState
           child: text != null
               ? Text(
                   text,
-                  style: Theme.of(context).textTheme.headline1?.copyWith(
+                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
                       color: enabled ? Colors.white : Colors.black,
                       fontSize: 15.0),
                 )
@@ -245,7 +245,7 @@ class AmbulanceBookingDetailsWidgetState
         text,
         style: Theme.of(context)
             .textTheme
-            .headline6
+            .titleLarge
             ?.copyWith(color: text == null ? Colors.black45 : Colors.black),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,

@@ -49,7 +49,7 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
                 ),
                 Text(
                   "Choose Ambulance",
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -141,7 +141,7 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
                         ),
                         Text(
                           val.toString().replaceFirst("AmbulanceType.", ""),
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ],
                     ),
@@ -185,7 +185,7 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
         ),
         Text(
           " $text",
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         )
       ],
     );
@@ -212,7 +212,7 @@ class AmbulanceWidgetState extends State<AmbulanceBookingAmbulanceWidget> {
               ),
               Text(
                 area,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               )
             ],
           ),

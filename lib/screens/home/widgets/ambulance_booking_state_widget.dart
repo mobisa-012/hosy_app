@@ -50,7 +50,7 @@ class AmbulanceBookingStateWidget extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.headline6?.copyWith(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white, fontWeight: FontWeight.normal),
                   ),
                   IconButton(
@@ -106,7 +106,7 @@ class AmbulanceBookingStateWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0)),
         child: Text(
           val,
-          style: Theme.of(context).textTheme.headline5?.copyWith(
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: enabled ? Colors.black : Colors.white, fontSize: 15),
         ));
   }

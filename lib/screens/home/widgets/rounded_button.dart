@@ -36,7 +36,7 @@ class RoundedButton extends StatelessWidget {
           child: text != null
               ? Text(
                   text,
-                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white,
                       ),
                 )

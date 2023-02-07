@@ -63,11 +63,11 @@ class AmbulanceBookingNotConfirmedWidgetState
                     Expanded(
                         child: Text(
                       "Change Pickup Location",
-                      style: Theme.of(context).textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.titleMedium,
                     )),
                     Text(
                       "Edit",
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     )
                   ],
                 ),
@@ -129,14 +129,14 @@ class AmbulanceBookingNotConfirmedWidgetState
           children: <Widget>[
             Text(
               driver.driverName,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 4.0,
             ),
             Text(
               driver.ambulanceDetails,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             )
           ],
         )),
@@ -158,7 +158,7 @@ class AmbulanceBookingNotConfirmedWidgetState
               ),
               Text(
                 "${driver.driverRating}",
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ],
           ),
@@ -200,7 +200,7 @@ class AmbulanceBookingNotConfirmedWidgetState
         ),
         Text(
           " $text",
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         )
       ],
     );
